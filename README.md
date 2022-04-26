@@ -9,107 +9,107 @@ Repository ini merupakan salah satu proses dari program Bootcamp Data Science Pu
 Dataset source : https://www.kaggle.com/olistbr/brazilian-ecommerce?select=olist_products_dataset.csv
 
 ## Who, What, How?
-Olist adalah sebuah perusahaan asal Brazil yang bergerak di bidang E-commerce. Perusahaan saat ini berencana untuk meningkatkan performa penjualan dengan menentukan metode pemasaran yang diberikan kepada pelanggan dengan berbagai kebutuhan, karakteristik atau perilaku yang berbeda. Perusahaan memiliki dataset dari setiap transaksi di E-commerce ini. kita sebagai Data science di perusahaan Olist memiliki peran untuk memberikan insight serta rekomendasi dari dataset tersebut, sehingga perusahaan dapat terus berkembang.
-Perusahaan ingin meningkatkan performa penjualan dengan metode pemasaran yang efektif dan efisien, sehingga diperlukan nya Customer Segmentation. Karena itu Langkah-langkah yang perlu kami lakukan  pertama adalah business understanding, data cleaning dan preparation, data overview, EDA dan insight, model dan evaluasi, business insight dan rekomendasi
+Olist is a Brazilian company engaged in E-commerce. The company is currently planning to improve sales performance by determining the marketing methods provided to customers with different needs, characteristics or behaviors. The company has a dataset of every transaction in this E-commerce. we as data scientists at the Olist company have a role to provide insight and recommendations from the dataset, so that the company can continue to grow.
+The company wants to improve sales performance with effective and efficient marketing methods, so Customer Segmentation is needed. Therefore, the steps we need to do first are business understanding, data cleaning and preparation, data overview, EDA and insight, model and evaluation, business insight and recommendations.
 
 ## Business Understanding
-Pada Langkah business understanding kami ingin memahami permasalahan business yang dimiliki oleh perusahaan dan menentukan tujuan dari hasil analysis ini.
-  Untuk memahami permasalahan bisnis nya, kami melakukan cohort analysis yaitu metode yang digunakan untuk menganalisis serta mengevaluasi perubahan perilaku sekelompok orang tertentu, yang melibatkan fitur demografis umum dalam kurun waktu tertentu.
-Dari hasil cohort analysisnya  bisa kita lihat kalau sekelompok pengguna baru hampir di setiap bulannya  tidak lebih dari 1% yang melakukan pembelian Kembali di bulan bulan berikutnya, kecuali di bulan desember 2016 itupun karena jumlah pelanggan barunya di bulan tersebut  hanya 1 orang dan orang tersebut melakukan pembelian kembali di bulan berikutnya.
-Dari 91.445 pelanggan  94%nya tidak melakukan pembelian berulang.
+In the business understanding step, we want to understand the business problems that the company has and determine the purpose of the results of this analysis.
+  To understand the business problem, we conducted a cohort analysis, which is a method used to analyze and evaluate changes in the behavior of a certain group of people, involving general demographic features over a certain period of time.
+From the results of the cohort analysis, we can see that a group of new users almost every month no more than 1% who make purchases again in the following month, except in December 2016 and even then because the number of new customers in that month is only 1 person and that person makes a purchase. back in the following month.
+Of the 91,445 customers, 94% do not make repeat purchases.
 ![cohortAnalysis](https://user-images.githubusercontent.com/94157150/162120110-9fda69bb-3ceb-4363-bced-8bf983b2d734.png)
 
-## Goal and Strategy
-Setelah mengetahui permasalahan business nya, kita bisa menargetkan tujuan kita yaitu: 
-1. Meningkatkan repurchasing dan juga untuk menimalisir potensial lost customer.
-2. Melakukan customer segmentasi menggunakan RFM analysis dan membuat model clustering untuk memprediksi cluster yang di targetkan. 
-3. Memberikan insight dan rekomendasi yang dapat membantu tim bisnis dan tim pemasaran untuk meningkatkan repurchasing. 
+## Goals and Strategy
+After knowing the business problem, we can target our goals, namely:
+1. Increase repurchasing and also to minimize potential lost customers.
+2. Perform customer segmentation using RFM analysis and create a clustering model to predict the targeted cluster.
+3. Provide insights and recommendations that can help the business team and marketing team to improve repurchasing.
 
 ## Data Overview
-Data Ecommerce Olist yang kami analysis ini berasal dari Kaggle, data ini terdiri dari 8 data set yang berbeda. Setelah kita lakukan proses merge atau penggabungan antar dataset sesuai dengan petunjuk dari schema data set ini, terdapat 44 kolom dan 119.143 baris.
+The Olist Ecommerce data that we analyze comes from Kaggle, this data consists of 8 different data sets. After we do the process of merging or merging between datasets according to the instructions from this schema data set, there are 44 columns and 119,143 rows.
 ![alt text](https://i.imgur.com/HRhd2Y0.png)
 
-## Data Preprocess dan Cleaning
- Sekarang kita masuk kedalam process data cleaning dan data preprocessing, pada tahap ini kami akan membersihkan data, memilih kolom yang digunakan dan mempersiapkan data untuk keperluan clustering. 
- berikut process cleaning dan preprocessing nya:
- 1. Handling Missing values -> Drop, karena missinga value antar kolomnya saling berkorelasi dan tipe data dari missing value nya adalah tipe data timestamp sehingga sulit untuk mengisi missing value.
- 2. Check & remove Duplicate -> 15.256 -> Drop, karena dapat mengganggu nilai payment value customer tersebut.
- 3. Handling outliers -> Tidak dilakukan treatment apapun, karena karena menurut kami pada dataset ini outlier nya dapat memberikan insight yang baik bukan mengganggu analysis.
+## Data Preprocess and Cleaning
+ Now we enter the process of data cleaning and data preprocessing, at this stage we will clean the data, select the columns to use and prepare the data for clustering purposes.
+ the following is the cleaning and preprocessing process:
+ 1. Handling Missing values ​​-> Drop, because the missing values ​​between the columns are correlated and the data type of the missing value is a timestamp data type so it is difficult to fill in the missing value.
+ 2. Check & remove Duplicate -> 15,256 -> Drop, because it can interfere with the customer's payment value.
+ 3. Handling outliers -> No treatment is carried out, because we think that in this dataset the outliers can provide good insight, not interfere with the analysis.
 
 ## Data Selected
-Setelah penggabungkan dataset, kami memilih 20 kolom yang berasal dari data customer, data payment, data seller dan data location. Meskipun untuk melakukan market segmentasi kita hanya membutuhkan data yang berkaitan dengan customer, disini kami memutuskan untuk memasukan data seller dan lokasi untuk bisa memberikan insight tambahan kepada kami.
-<img width="661" alt="Screen Shot 2022-04-07 at 12 17 21" src="https://user-images.githubusercontent.com/94157150/162125544-1260511c-c4c2-499b-b0a9-9dc4452d82bb.png">
+After merging the datasets, we select 20 columns from customer data, payment data, seller data and location data. Although to do market segmentation we only need data related to customers, here we decided to enter seller and location data to be able to provide additional insight to us.
+<img width="661" alt="Screen Shot 2022-04-07 at 12 17 21" src="https://user-images.githubusercontent.com/94157150/162125544-1260511c-c4c2-499b-b0a9-9dc4452d82bb .png">
 
 
-## Data Overview dan EDA
-Setelah melewati proses cleaning data kami siap digunakan,di tahap data Overview, EDA dan Insight ini kami akan menjabarkan hasil dari analyisis yang sudah kami lakukan.
+## Data Overview and EDA
+After going through the cleaning process, our data is ready to be used, at the Overview, EDA and Insight data stages, we will describe the results of the analysis we have done.
 
 ### Sales Overview
 
 ![Sales Overview](https://user-images.githubusercontent.com/94157150/162125819-1bd59c0e-db5a-4320-9874-87ffc3e67aa4.jpeg)
 
-Di sales overview ini kita dapat melihat traffic pembelian berdasarkan hari dan jam nya, dari heatmap ini menunjukan bahwa traffic pembelian tertinggi di ecommerce olist berada di hari weekdays dari jam 10 pagi sampai jam 4 sore, walaupun di jam 5 sore hingga malam traffic pembelian nya masih lumayan tinggi. Dapat kita asumsikan bahwa penyebab traffic pembelian di hari week end lebih rendah dibanding weekdays karena pada sabtu dan minggu orang orang lebih memilih untuk beberlanja ketoko offline.
-Berikutnya kita dapat meilihat jumlah transaksi, dan jumlah pembayaran tiap bulan nya dari data ini berbanding lurus, trend dari kedua data positif. Jumlah transaksi dan pembayaran terbesar sama-sama berada di bulan November 2017.
-Untuk Metode pembayaran yang tersedia adalah boleto, cc, debit, dan voucher. 74% metode pembayaran yang digunakan adalah credit card.
+In this sales overview, we can see purchase traffic based on the day and hour, from this heatmap it shows that the highest purchase traffic on ecommerce olist is on weekdays from 10 am to 4 pm, even though at 5 pm to night the purchase traffic is still pretty high. We can assume that the cause of purchase traffic on weekends is lower than weekdays because on Saturdays and Sundays people prefer to shop at offline stores.
+Next we can see the number of transactions, and the number of payments each month from this data is directly proportional, the trend of the two data is positive. The largest number of transactions and payments were both in November 2017.
+The payment methods available are boleto, cc, debit, and vouchers. 74% of the payment methods used are credit cards.
 
-Rata-rata dari review score yang diberikan customer kepada seller bisa dibilang cukup baik dengan rata-rata score 4.1 dari 5. Hal ini menunjukan pada dasarnya mayoritas dari customer cukup puas dengan barang yang mereka beli.
+The average review score given by the customer to the seller is quite good with an average score of 4.1 out of 5. This shows that basically the majority of customers are quite satisfied with the goods they buy.
 
-Jika kita lihat dari jumlah customer dan jumlah seller, dapat diasumsikan bahwa setiap seller mendapatkan 32 customer saja. Total transaksi pembayarannya sebesar 15,1jt real, dan total seluruh produk nya sebanyak 30,2ribu. Jika kita lihat lagi pada metode pembayaran mayoritas menggunakan kartu kredit, sebanyak 50.5% customer di olist melakukan pembayaran dengan cicilan.
+If we look at the number of customers and the number of sellers, it can be assumed that each seller only gets 32 customers. The total payment transactions are 15.1 million reals, and the total of all products is 30.2 thousand. If we look again at the majority of payment methods using credit cards, as many as 50.5% of customers at olist make payments in installments.
 
 ### State
 ![Geolocation](https://user-images.githubusercontent.com/94157150/162126806-e48c3cd2-3f1c-4cdc-983b-1f8d300a8522.jpeg)
 
-Ini adalah peta lokasi seller state dan customer state. Bisa kita lihat dari seller mau pun customer populasi paling banyak nya berada di sao Paulo. Dari hasil analysis kami menunjukan bahwa 64% transaksi melakukan pemesanan antar negara bagian yang berbeda. Mungkin hal itu terjadi karena barang yang mereka inginkan tidak tersedia di daerah mereka walaupun hal tersebut tidak dapat di validasi karena tidak ada data yang menjelaskan secara spesifik tentang produk  apa yang dibeli tetapi hanya berupa kategori.
+This is a map of the location of the seller state and customer state. We can see from the seller and the customer the population is mostly in Sao Paulo. From our analysis results show that 64% of transactions place orders between different states. Maybe it happened because the goods they wanted were not available in their area even though it could not be validated because there was no data that specifically explained what products were purchased but only in the form of categories.
 
-### Pengiriman
+### Delivery
 ![Delivery Overview](https://user-images.githubusercontent.com/94157150/162127719-f492bb36-739e-44f7-ada1-de3f4579e47e.jpeg)
 
-Selanjutnya kami melakukan analysis terhadap data pengiriman, rute pengiriman paling banyak yaitu pengiriman dari saopaulo ke saopaulo, tetapi sesuai dari data state sebelumnya bahwa 7 dari 10 rute pengiriman terbanyak nya ke negara bagian yang berbeda. 
-Jika dilihat dari waktu pengirimannya, 7 dari 10 waktu pengiriman tercepat adalah pengiriman ke negara bagian yang sama. Sedangkan 10 waktu pengiriman terlama nya adalah pengiriman ke negara bagian yang berbeda, bahkan ada waktu pengiriman yang mencapai 138 hari. Rata-rata durasi pengiriman nya adalah 9 hari sedangkan estmasi nya adalah 21 hari, mungkin lamanya waktu pengiriman dan estimasi juga mendukung hasil analysis kami sebelumnya bahwa 64% pengirimannya ke antar negara bagian karena jika barang tersedia di daerah mereka, mereka akan memilih pergi ke toko fisik dari pada harus menunggu lama, apa lagi estimasi yang diberikan rata-ratanya lebih lama 2 kali lipat dari rata-rata pengiriman actual nya.
-Analysis kami menunjukan bahwa pengiriman yang tidak sesuai estimasi mencapai 98,7%, walaupun proporsi pengeriman yang lebih lama dari estimasi nya hanya sebesar 6,6% tetapi terdapat 74% estimasi yang lebih dari 7 hari dibanding dengan actual nya. Estimasi pengiriman yang terlalu lama bisa menyebabkan menurunya minat pembeli padahal waktu pengirimannya bisa jauh lebih cepat.
+Next, we analyze the shipping data, the most shipping routes are from saopaulo to saopaulo, but according to the previous state data, 7 out of 10 shipping routes are mostly to different states.
+When viewed from the delivery time, 7 out of 10 fastest delivery times are deliveries to the same state. While the 10 longest delivery times are deliveries to different states, there is even a delivery time that reaches 138 days. The average duration of delivery is 9 days while the estimate is 21 days, maybe the length of delivery time and estimates also support our previous analysis results that 64% of shipments are interstate because if the goods are available in their area, they will choose to go to the store physical rather than having to wait a long time, what's more, the estimate given is on average 2 times longer than the average actual delivery.
+Our analysis shows that deliveries that do not match the estimates reach 98.7%, although the proportion of deliveries that are longer than the estimate is only 6.6%, but there are 74% estimates that are more than 7 days compared to the actual. Estimated delivery that is too long can cause a decrease in buyer interest even though the delivery time can be much faster.
 
-### Kategori 
+### Categories
 ![Best Category Product](https://user-images.githubusercontent.com/94157150/162127812-acbbcdfe-9f98-4b03-a965-ac018798654d.jpeg)
 
-Ini adalah 35 kategori dengan penjualan tertetinggi, mayoritas dari categori ini adalah barang yang tidak di beli Kembali dalam waktu dekat, sedangkan di data ini hanya dalam kurun waktu 22 bulan. Hal tersebut mungkin menjadi penyebab 94% customer olist di data ini tidak melakukan pembelian berulang. Jika dihubungkan dengan anylsis sebelumnya bahwa 64% transaksi dilakukan antar negara bagian, menyebabkan waktu pengirimannya menjadi lama, untuk barang-barang yang pembeliannya bersifat repeatable seperti makanan, minuman, atau barang-barang yang dibutuhkan sesegara mungkin, membuat customer akan ragu untuk berbelanja di olist. Sehingga kemungkinan barang-barang yang dibeli di Olist adalah barang yang tidak tersedia daerah nya atau sulit dicari membuat mereka rela menunggu lama.
+These are the 35 categories with the highest sales, the majority of these categories are goods that are not repurchased in the near future, while in this data only for a period of 22 months. This may be the cause of 94% of customer lists in this data not making repeat purchases. If it is related to the previous analysis that 64% of transactions are carried out between states, causing the delivery time to be long, for goods whose purchases are repeatable such as food, drinks, or items that are needed as soon as possible, making customers hesitate to shop at olis . So it is possible that the goods purchased at Olist are goods that are not available in the area or are difficult to find, making them willing to wait a long time.
 
 
 ## Model
-  Selanjutnya membuat modelin untuk customer segmentasi dan evaluasi dari model. Clustering dibuat untuk mengelompokan customer berdasarkan behavior nya sehingga kami dapat menentukan kelompok mana yang akan menjadi target utama kami untuk meningkatkan penjualan di ecommerce ini.
-Pertama-tama kita harus menyiapkan datanya sebelum membuat model, mulai dari membuat fitur RFM, lalu digabungkan dengan fitur-fitur yang sudah kita pilih dari dataframe, masuk ketahap scaling menggunakan standard scaler dan mengurangi dimensi data menggunakan PCA dengan N component 2.
+  Next, create a model for customer segmentation and evaluation of the model. Clustering is made to group customers based on their behavior so that we can determine which group will be our main target to increase sales in this e-commerce.
+First of all we have to prepare the data before creating the model, starting from creating the RFM feature, then combining it with the features that we have selected from the dataframe, going to the scaling stage using a standard scaler and reducing the dimensions of the data using PCA with N component 2.
 
-Kami membuat 4 model yang pertama yaitu menggunakan selected feature dengan model KMeans, yang kedua adalah RFM Segmentasi, yang ketiga fitur RFM dengan model KMeans,model yang terakhir adalah menggabungkan fitur yang dipilih dengan fitur RFM dengan model kmeans
-Fitur yang dipilih berupa : 
-*	order_item_id
-*	 price
-*	 freight_value
-*	 Payment_value
-*	 payment_sequential
-*	 payment_installments
+We made the first 4 models, namely using selected features with the KMeans model, the second is RFM Segmentation, the third is RFM features with the KMeans model, the last model is combining the selected features with RFM features with the kmeans model.
+The selected features are:
+* order_item_id
+*price
+*freight_value
+*Payment_value
+* payment_sequential
+* payment_installments
 
-Kami memilih model keempat yaitu model yang menggunakan fitur pilihan dan fitur RFM, jumlah cluster yang dipilih adalah 4 karena hasil dari clusteringnya dapat menginterpretasi kan tujuan kami. Sillhouette score dari model ini adalah 0.74 
+We chose the fourth model, which is a model that uses optional features and RFM features, the number of clusters chosen is 4 because the results of the clustering can interpret our goals. Sillhouette score of this model is 0.74
 
-## Hasil Clustering
+## Clustering Results
 ![WhatsApp Image 2022-04-07 at 12 21 31 PM](https://user-images.githubusercontent.com/94157150/162128041-d9252b16-af16-4c89-8ee8-dfaad4718f4b.jpeg)
 
-Ini adalah hasil dari clusteringnya. Cluster yang pertama adalah Big spender yaitu kelompok customer yang membeli barang dengan quantitas sedikit, frequency sedikit, tetapi melakukan pembayaran yang cukup besar, rata-rata dari cluster ini juga melakukan cicilan saat membeli barang.
-Yang kedua adalah Hibernating yaitu kelompok customer yang membeli barang dengan quantitas sedikit, frequency sedikit, jumlah pembayarannya juga sedikit.
-Yang ketiga adalah Loyal Customer yaitu kolompok customer yang membeli barang dengan quantitas banyak, frequency nya juga banyak, dengan jumlah pembayaran sedang.
-Yang terakhir adalah Need attention yaitu kelompok customer yang membeli barang dengan qunatitas, frequency dan jumlah pembayarannya sedang.
+This is the result of the clustering. The first cluster is Big Spender, which is a group of customers who buy goods with a small quantity, a little frequency, but make a fairly large payment, on average from this cluster also make installments when buying goods.
+The second is Hibernating, which is a group of customers who buy goods with a small quantity, a small frequency, and a small amount of payment.
+The third is Loyal Customers, namely groups of customers who buy goods in large quantities, the frequency is also a lot, with a moderate amount of payment.
+The last one is Need attention, which is a group of customers who buy goods with moderate quantity, frequency and amount of payment.
 
-Dari hasil clustering, kami mengetahui bahwa cluster degan proporsi terbanyak yaitu 89% adalah Hibernating, sehingga cluster tersebut merupakan target segmen kami dan didukung dengan keterhubungan permasalahan hasil cohort analisis yang menunjukan 94% customer tidak melakukan pembelian berulang. Menurut F.F Reichheld (1996) “suatu perusahaan sangat penting untuk memuaskan dan mempertahankan pelanggan yang ada karena mencari pelanggan baru biaya nya dapat mencapai lima kali lipat lebih besar dari biaya untuk memuaskan dan mempertahankan pelanggan”.
+From the results of clustering, we know that the cluster with the highest proportion of 89% is Hibernating, so that the cluster is our target segment and is supported by the connectedness of the problems resulting from the cohort analysis which shows 94% of customers do not make repeat purchases. According to F.F Reichheld (1996) "a company is very important to satisfy and retain existing customers because finding new customers can cost up to five times greater than the cost to satisfy and retain customers".
 
 ## Business Insight, recommendation
-Dari hasil Analysis dan hasil clustering, juga didasari dari pernyataan Frederick Reichheld, sebaiknya kita melakukan improvement terhadap permasalahan pengiriman dan ketersediaan barang di setiap negara bagian untuk menarik Kembali cluster hibernating, sebelum mencoba membuat campaign untuk menarik pengguna baru yang nantinya akan memiliki pengalaman yang sema dengan pengguna lama.
+From the results of the analysis and clustering results, also based on Frederick Reichheld's statement, we should make improvements to the problems of delivery and availability of goods in each state to withdraw the hibernating cluster, before trying to create a campaign to attract new users who will later have the same experience with old user.
 
-1. Rekomendasi Untuk tim bisnis
+1. Recommendations For business team
 
-Untuk tim bisnis kami merekomendasikan untuk melakukan improvement di sector pengiriman dengan cara bermitra dengan jasa pengiriman yang berkualitas agar penetapan estimasi dan kecepatan pengirimannya menjadi lebih baik. Yang kedua adalah membuat warehousing di berbagai negara bagian karena selain pengiriman nya menjadi lebih cepat, warehousing juga bisa membuat ketersediaan barang lebih merata di tiap negara bagiannya.
-Kami juga menyarankan untuk Meminta feedback user, seperti  survey singkat mengenai apa yang  perlu diubah untuk mendapatkan  pengalaman yang lebih baik saat  melakukan transaksi.
+For the business team, we recommend making improvements in the shipping sector by partnering with quality shipping services so that the estimation and delivery speed are better. The second is to make warehousing in various states because in addition to faster delivery, warehousing can also make the availability of goods more evenly distributed in each state.
+We also recommend asking for user feedback, such as a short survey on what needs to be changed to get a better experience when making transactions.
 
-2. Rekomendasi Untuk tim marketing
+2. Recommendations for the marketing team
 
-Yang pertama kami menyarankan untuk tim marketing melakukan pembuatan campaign untuk meningkatkan jumlah seller dengan cara memberikan edukasi dan benefit Ketika mereka mempercayakan usaha mereka di Olist. Karena dengan meningkatkan jumlah seller diharapkan ketersediaan barang lebih merata sehingga pengiriman barang menjadi lebih cepat dan dapat menarik Kembali cluster hibernating. Yang kedua melakukan A/B testing untuk cluster hibernating dengan membandingkan behavior dari cluster tersebut dengan cara memberikan sales promotion seperti cicilan 0% karena 50% dari pelanggan melakukan transaksi dengan cicilan. Kita juga dapat memberikan promo gratis ongkir sehingga lama nya waktu pengiriman dapat dipertimbangkan.
+First, we suggest that the marketing team create a campaign to increase the number of sellers by providing education and benefits when they entrust their business to Olist. Because by increasing the number of sellers, it is hoped that the availability of goods will be more evenly distributed so that the delivery of goods will be faster and can withdraw the hibernating cluster. The second is doing A/B testing for hibernating clusters by comparing the behavior of the cluster by providing sales promotions such as 0% installments because 50% of customers make transactions in installments. We can also provide free shipping promos so that the delivery time can be considered.
 
 ## Conclusion
-dari permasalahan bahwa 94% customer di olist tidak melakukan repurchase, kami sudah memberikan rekomendasi-rekomendasi yang ditujukan untuk cluster target kami yaitu cluster hibernating agar. Tujuan yang diharapkan tentu saja untuk meningkatkan  repurchasing dengan menarik Kembali minat membeli dari cluster hibernating tersebut. Untuk melihat impact dari rekomendasi dan analysis kami, kita bisa menggunakan metode A/B testing dan melakukan anylsis terhadap hasil feedback yang diberikan oleh customer.
+from the problem that 94% of customers at olist do not repurchase, we have provided recommendations aimed at our target cluster, namely the agar hibernating cluster. The expected goal, of course, is to increase repurchasing by attracting back buying interest from the hibernating cluster. To see the impact of our recommendations and analysis, we can use the A/B testing method and analyze the results of feedback provided by customers.
