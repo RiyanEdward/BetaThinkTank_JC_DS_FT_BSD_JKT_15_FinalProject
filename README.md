@@ -1,11 +1,5 @@
 # BetaThinkTank_JC_DS_FT_BSD_JKT_15_FinalProject
 
-### Created By : Beta ThinkTank
-Repository ini merupakan salah satu proses dari program Bootcamp Data Science Purwadhika Digital School ini, dan disusun oleh tim Beta ThinkTank yang ber anggotakan :
-1. Cristopher Gani
-2. Riyan Rafif
-3. Rifqi Manufi
-
 Dataset source : https://www.kaggle.com/olistbr/brazilian-ecommerce?select=olist_products_dataset.csv
 
 ## Who, What, How?
